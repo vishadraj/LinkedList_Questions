@@ -48,14 +48,30 @@ public class ReverseLinkedlist {
     }
 
     public static ListNode reverseList(ListNode head) {
-        ListNode current = head;
-        ListNode previous = null;
-        while(current != null){
-            ListNode temp = current.next;
-            current.next = previous;
-            previous = current;
-            current = temp;
+
+      // Iterative Method
+//        ListNode current = head;
+//        ListNode previous = null;
+//        while(current != null){
+//            ListNode temp = current.next;
+//            current.next = previous;
+//            previous = current;
+//            current = temp;
+//        }
+//        return previous;
+
+        // Recursive Approach
+        if(head == null || head.next == null)
+        {
+            return head;
         }
-        return previous;
+
+        ListNode second = head.next;
+        head.next = null;
+        ListNode result = reverseList(second);
+        second.next = head;
+
+        return result;
+
     }
 }
